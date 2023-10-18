@@ -1,8 +1,10 @@
 export const defaultTheme = {
     withe: '#FFF',
-  
-    'gray-title': '#272221',
-    'orange-dark': '#D47F56',
-    'border-input': '#E6E5E5',
-    'placeholder-input': '#574F4D',
+
+    'green-default': '#2BD06D',
+    'text-default': '#000000',
+    'gray-700': '#646464',
+    'gray-100': '#F8F8F8',
+    'output': '#FF5D47',
+    'input': '#2BD06D',
   }

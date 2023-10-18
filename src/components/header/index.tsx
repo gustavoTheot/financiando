@@ -1,15 +1,21 @@
-import { HeaderContainer } from "./styles"
+import { Container, Content, HeaderContainer } from "./styles"
 
 interface HeaderProps{
+    img: string,
     time: string,
-    name: string
+    name: string,
 }
 
-export function Header({time, name}: HeaderProps){
+export function Header({img, time, name}: HeaderProps){
     return(
         <HeaderContainer>
-            <span>{time}</span>
-            <h2>{name}</h2>
+            <Container>
+                <img src={img} alt="" />
+                <Content>
+                    <span>{time}</span>
+                    <h2>{name}</h2>
+                </Content>
+            </Container>
         </HeaderContainer>
     )
 }
