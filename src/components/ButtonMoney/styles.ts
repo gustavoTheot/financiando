@@ -16,8 +16,8 @@ export const ButtonContainer = styled.button`
 export const Circle = styled.div`
     border: none;
     border-radius: 999px;
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 3rem;
+    height: 3rem;
     background-color: ${(props) => props.theme['green-default']};
 
     display: flex;

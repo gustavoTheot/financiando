@@ -38,7 +38,7 @@ export const Content = styled.div`
     justify-content: center;
     align-items: flex-start;
 
-    span{
-        font-size: 
+    span, h2{
+        color: ${props => props.theme['withe']};
     }
 `

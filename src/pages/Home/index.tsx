@@ -1,8 +1,10 @@
 import { Header } from "../../components/Header";
-import { Description, FinancialData, FinancialShares, ListWallet, Main, WalletContainer } from "./styles";
-import { Wallet } from "phosphor-react";
-import { Button } from "../../components/Button";
+import { Description, FinancialData, FinancialShares, ItemFinancialShares, ListWallet, ListaItens, Main, WalletContainer } from "./styles";
+import { SignOut, Storefront, UploadSimple, Wallet } from "phosphor-react";
+import { Button } from "../../components/ButtonMoney";
 import { Container } from "../../styles/container";
+import { Item } from "../../components/Item";
+import { Link } from "react-router-dom";
 
 export function Home(){
     return(
@@ -26,11 +28,29 @@ export function Home(){
                 </WalletContainer>
 
                 <FinancialShares>
+                    <Link to={'/input'}>
+                        <ItemFinancialShares>
+                            <div>
+                                <UploadSimple size={32}/>
+                            </div>
+                            <span>Entradas</span>
+                        </ItemFinancialShares>
+                    </Link>
+                    <Link to={''}>
+                        <ItemFinancialShares>
+                            <div>
+                                <SignOut size={32}/>
+                            </div>
+                            <span>Entradas</span>
+                        </ItemFinancialShares>
+                    </Link>
                     
                 </FinancialShares>
 
                 <FinancialData>
-                    
+                    <ListaItens>
+                        <Item icon={<Storefront size={32}/>} formPayament={'Cartão de crédito'} local={'Mercado'} value={12.20}/>
+                    </ListaItens>
                 </FinancialData>
             </Main>
         </Container>

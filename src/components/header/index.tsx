@@ -1,20 +1,33 @@
+import { ReactNode } from "react"
 import { Container, Content, HeaderContainer } from "./styles"
 
 interface HeaderProps{
-    img: string,
-    time: string,
-    name: string,
+    img?: string,
+    time?: string,
+    name?: string,
+    icon?: ReactNode,
+    backgroundColor?: string,
 }
 
-export function Header({img, time, name}: HeaderProps){
+export function Header({icon, img, time, name, backgroundColor}: HeaderProps){
     return(
-        <HeaderContainer>
+        <HeaderContainer style={{backgroundColor: backgroundColor}}>
             <Container>
-                <img src={img} alt="" />
-                <Content>
-                    <span>{time}</span>
-                    <h2>{name}</h2>
-                </Content>
+                {
+                    img !== undefined && (
+                        <>
+                            <img src={img} />
+                            <Content>
+                                <span>{time}</span>
+                                <h2>{name}</h2>
+                            </Content>
+                        </>
+                    )
+                }
+                {
+                    icon !== undefined ? (<>{icon}</>) : ''
+                }
+                
             </Container>
         </HeaderContainer>
     )
