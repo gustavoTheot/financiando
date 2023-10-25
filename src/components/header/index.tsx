@@ -1,5 +1,6 @@
 import { ReactNode } from "react"
-import { Container, Content, HeaderContainer } from "./styles"
+import { Container, Content, HeaderContainer, IconeReturn } from "./styles"
+import { Link } from "react-router-dom"
 
 interface HeaderProps{
     img?: string,
@@ -25,9 +26,13 @@ export function Header({icon, img, time, name, backgroundColor}: HeaderProps){
                     )
                 }
                 {
-                    icon !== undefined ? (<>{icon}</>) : ''
+                    icon !== undefined && (
+                        <IconeReturn>
+                            <Link to={'/home'}>{icon}</Link>
+                        </IconeReturn>
+                    )
                 }
-                
+            
             </Container>
         </HeaderContainer>
     )

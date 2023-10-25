@@ -10,17 +10,10 @@ export const HeaderContainer = styled.header`
 `
 
 export const Container = styled.div`
-    @media (max-width: 1190px) {
-        margin: 0 3rem 0 3rem;
-    }
-
-    @media (max-width: 700px) {
-        margin: 0 3rem 0 3rem;
-    }
-
+    width: 24rem;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     gap: 1rem;
 
@@ -40,5 +33,14 @@ export const Content = styled.div`
 
     span, h2{
         color: ${props => props.theme['withe']};
+    }
+`
+
+export const IconeReturn = styled.div`
+    display: flex;
+    align-items: flex-start;
+
+    a{
+        color: ${props => props.theme['withe']}
     }
 `

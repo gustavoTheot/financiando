@@ -13,7 +13,7 @@ export const Main = styled.main`
 
 export const WalletContainer = styled.div`
     width: 24rem;
-    height: 12rem;
+    height: 14rem;
     background-color: ${props => props.theme['withe']};
 
     padding: 1rem 2rem 1rem 2rem;
@@ -21,17 +21,11 @@ export const WalletContainer = styled.div`
 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: flex-start;
 
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-`
-
-export const Description = styled.div`
-    h1{
-        margin-top: 0.125rem;
-    }
-`
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    `
 
 export const ListWallet = styled.ul`
     display: flex;
@@ -40,42 +34,10 @@ export const ListWallet = styled.ul`
 
     li{
         list-style: none;
-    }
-`
 
-export const FinancialShares = styled.div`
-    width: 24rem;
-    height: 12rem;
-    background-color: ${props => props.theme['withe']};
-
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    
-    a{
-        color: black;
-        text-decoration: none;
-    }
-`
-
-export const ItemFinancialShares = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-
-    div{
-        width: 4rem;
-        height: 4rem;
-        border-radius: 8px;
-        background-color: ${props => props.theme['green-default']};
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        a{
+            text-decoration: none;
+        }
     }
 `
 
@@ -84,8 +46,9 @@ export const FinancialData = styled.div`
     height: 20rem;
     background-color: ${props => props.theme['withe']};
 
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-`
+    border-radius: 8px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    `
 
 export const ListaItens = styled.ul`
     padding: 1rem 2rem 1rem 2rem;   

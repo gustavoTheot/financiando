@@ -1,22 +1,22 @@
-import { Storefront } from "phosphor-react";
+import { ArrowLeft, Storefront } from "phosphor-react";
 import { Header } from "../../components/Header";
 import { Item } from "../../components/Item";
 import { FinancialData, ListaItens, Main } from "../Home/styles";
 import { Container } from "../../styles/container";
 import { ValueOutput } from "./styles";
 import { FormInput } from "../../components/FormInput";
+import { MyWallet } from "../../components/Wallet";
 
 export function Output(){
     return(
         <Container>
-            <Header backgroundColor="#FF5D47"/>
+            <Header backgroundColor="#FF5D47" icon={<ArrowLeft size={24}/>}/>
             <Main>
                 <ValueOutput>
-                    <span>Total</span>
-                    <h1>R$ {1000.00}</h1>
+                    <MyWallet/>
                 </ValueOutput>
 
-                <FormInput placeholder={'Gastos'}/>
+                <FormInput value={'Gasto'} description={'Descrição'} locale={'Local'}/>
 
                 <FinancialData>
                     <ListaItens>
