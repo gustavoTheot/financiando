@@ -13,7 +13,7 @@ export const ButtonContainer = styled.button`
     cursor: pointer;
 
     span{
-        font-weight: bold;
+        font-weight: 500;
     }
 
     transition-duration: 2s;

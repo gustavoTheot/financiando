@@ -1,29 +1,18 @@
-import { useEffect, useState } from "react";
-import { wallet } from "../../database/data";
+import {useContext } from "react";
+
 import { Description } from "./styles";
+import { FinancialContext } from "../../context/FinancialContext";
 
 export function MyWallet(){
-    const [total, setTotal] = useState<number>(0);
-
-    async function calcTotal(){
-     const calc = wallet.reduce((acc, item) => 
-         acc + item.wallet, 0
-     )
-     setTotal(calc)
-    }
- 
-    useEffect(() => {
-     calcTotal()
-    }, [])
-
+    const {totalValue} = useContext(FinancialContext);
     return(
         <Description>
             <span>Total</span>
             {
-                total < 0 ? (
-                    <h1>R$ - {total}</h1>
+                totalValue < 0 ? (
+                    <h1>R$ - {totalValue}</h1>
                 ) : ( 
-                <h1>R$ {total}</h1>
+                <h1>R$ {totalValue}</h1>
                 )
             }
             

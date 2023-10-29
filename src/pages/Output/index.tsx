@@ -16,7 +16,7 @@ export function Output(){
                     <MyWallet/>
                 </ValueOutput>
 
-                <FormInput value={'Gasto'} description={'Descrição'} locale={'Local'}/>
+                <FormInput value={'Gasto'} description={'Descrição'} locale={'Local'} colorButton={'#FF5D47'}/>
 
                 <FinancialData>
                     <ListaItens>

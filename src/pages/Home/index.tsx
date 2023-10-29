@@ -6,10 +6,13 @@ import { Container } from "../../styles/container";
 import { Item } from "../../components/Item";
 import { Link } from "react-router-dom";
 import { MyWallet } from "../../components/Wallet";
+import { useContext } from "react";
+import { FinancialContext } from "../../context/FinancialContext";
 
-export function Home(){
-   
 
+export function Home(){  
+    const {id} = useContext(FinancialContext)
+    
     return(
         <Container>
             <Header img={'https://avatars.githubusercontent.com/u/44641003?v=4'} time={"Bom dia"} name={"Gustavo Silva"}/>
@@ -22,7 +25,7 @@ export function Home(){
                             <Button icon={<Wallet size={32} />} description={'Carteira'}/>
                         </li>
                         <li>
-                            <Link to={'/input'}>
+                            <Link to={`/input/${id}`}>
                                 <Button icon={<Vault size={32} />} description={'Guardado'}/>
                             </Link>
                         </li>

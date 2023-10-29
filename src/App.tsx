@@ -4,6 +4,7 @@ import { AppContainer } from './AppStyles'
 import { Router } from './Routes'
 import { GlobalStyles } from './styles/globa'
 import { defaultTheme } from './styles/themes/default'
+import { FinancialProvider } from './context/FinancialContext'
 
 function App() {
   return (
@@ -11,7 +12,9 @@ function App() {
       <AppContainer>
         <GlobalStyles/>
         <BrowserRouter>
-          <Router/>
+          <FinancialProvider>
+            <Router/>
+          </FinancialProvider>
         </BrowserRouter>
       </AppContainer>
     </ThemeProvider>

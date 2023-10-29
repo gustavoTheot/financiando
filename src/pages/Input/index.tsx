@@ -8,6 +8,7 @@ import { ValueInput } from "./styles";
 import { MyWallet } from "../../components/Wallet";
 
 export function Input(){
+
     return(
         <Container>
             <Header backgroundColor="#2BD06D" icon={<ArrowLeft size={24}/>}/>
@@ -16,7 +17,7 @@ export function Input(){
                     <MyWallet/>
                 </ValueInput>
 
-                <FormInput description={'Descrição'} value={'Lucro'} locale={'Local'}/>
+                <FormInput description={'Descrição'} value={'Lucro'} locale={'Local'} colorButton={'#2BD06D'}/>
 
                 <FinancialData>
                     <ListaItens>
