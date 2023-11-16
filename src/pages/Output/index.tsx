@@ -1,29 +1,27 @@
-import { ArrowLeft, Storefront } from "phosphor-react";
-import { Header } from "../../components/Header";
-import { Item } from "../../components/Item";
-import { FinancialData, ListaItens, Main } from "../Home/styles";
-import { Container } from "../../styles/container";
-import { ValueOutput } from "./styles";
-import { FormInput } from "../../components/FormInput";
-import { MyWallet } from "../../components/Wallet";
+import { ArrowLeft } from 'phosphor-react'
+import { Header } from '../../components/Header'
+import { Main } from '../Home/styles'
+import { Container } from '../../styles/container'
+import { ValueOutput } from './styles'
+import { FormInput } from '../../components/FormInput'
 
-export function Output(){
-    return(
-        <Container>
-            <Header backgroundColor="#FF5D47" icon={<ArrowLeft size={24}/>}/>
-            <Main>
-                <ValueOutput>
-                    <MyWallet/>
-                </ValueOutput>
+export function Output() {
+  return (
+    <Container>
+      <Header backgroundColor="#FF5D47" icon={<ArrowLeft size={24} />} />
+      <Main>
+        <ValueOutput>
+          <span>Value</span>
+          <h1>{}</h1>
+        </ValueOutput>
 
-                <FormInput value={'Gasto'} description={'Descrição'} locale={'Local'} colorButton={'#FF5D47'}/>
-
-                <FinancialData>
-                    <ListaItens>
-                        <Item icon={<Storefront size={32}/>} formPayament={'Cartão de crédito'} local={'Mercado'} value={-12.20}/>
-                    </ListaItens>
-                </FinancialData>
-            </Main>
-        </Container>
-    )
+        <FormInput
+          local={'Local'}
+          description={'Descrição'}
+          value={'Gasto'}
+          colorButton={'#FF5D47'}
+        />
+      </Main>
+    </Container>
+  )
 }
