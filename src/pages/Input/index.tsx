@@ -1,9 +1,9 @@
 import { ArrowLeft } from 'phosphor-react'
 import { FormInput } from '../../components/FormInput'
-import { Header } from '../../components/Header'
 import { Container } from '../../styles/container'
 import { Main } from '../Home/styles'
 import { ValueInput } from './styles'
+import { Header } from '../../components/header'
 
 export function Input() {
   return (

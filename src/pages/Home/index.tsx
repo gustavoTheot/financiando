@@ -1,4 +1,3 @@
-import { Header } from '../../components/Header'
 import {
   Description,
   Down,
@@ -23,20 +22,42 @@ import {
 import { Button } from '../../components/ButtonMoney'
 import { Container } from '../../styles/container'
 import { Item } from '../../components/Item'
-import { Link } from 'react-router-dom'
-import { useContext } from 'react'
-import { FinancialContext } from '../../context/FinancialContext'
+import { Link, useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import { SelectMonth } from '../../components/SelectMonth'
+import { Header } from '../../components/header'
+import { api } from '../../server/api'
 
 export function Home() {
-  const { id, totalValue } = useContext(FinancialContext)
+  const [name, setName] = useState<string>('')
+  const [totalValue, setTotalValue] = useState<number>(0)
+  const [inputValue, setInputValue] = useState<number>(0)
+  const [outputValue, setOutputValue] = useState<number>(0)
+
+  const { id } = useParams()
+
+  async function fetchWallet() {
+    try {
+      const response = await api.get(`/wallet/${id}`)
+      setName(response.data.name)
+      setTotalValue(response.data.totalValue)
+      setInputValue(response.data.inputValue)
+      setOutputValue(response.data.outputValue)
+    } catch (error) {
+      alert(error)
+    }
+  }
+
+  useEffect(() => {
+    fetchWallet()
+  })
 
   return (
     <Container>
       <Header
         img={'https://avatars.githubusercontent.com/u/44641003?v=4'}
         time={'Bom dia'}
-        name={'Gustavo Silva'}
+        name={name}
       />
 
       <Main>
@@ -57,7 +78,7 @@ export function Home() {
 
               <div>
                 <span>Enter</span>
-                <p>R${20.0}</p>
+                <p>R${inputValue}</p>
               </div>
             </Up>
 
@@ -66,7 +87,7 @@ export function Home() {
 
               <div>
                 <span>Exit</span>
-                <p>R${10.0}</p>
+                <p>R${outputValue}</p>
               </div>
             </Down>
           </Description>
@@ -78,12 +99,12 @@ export function Home() {
               <Button icon={<Wallet size={32} />} description={'Carteira'} />
             </li>
             <li>
-              <Link to={`/input/${id}`}>
+              <Link to={`/input`}>
                 <Button icon={<Vault size={32} />} description={'Guardado'} />
               </Link>
             </li>
             <li>
-              <Link to={`/output/${id}`}>
+              <Link to={`/output`}>
                 <Button icon={<Tag size={32} />} description={'Compras'} />
               </Link>
             </li>
