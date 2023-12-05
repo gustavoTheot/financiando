@@ -18,27 +18,59 @@ import {
   Tag,
   Vault,
   Wallet,
+  CaretLeft,
+  CaretRight,
 } from 'phosphor-react'
+
 import { Button } from '../../components/ButtonMoney'
 import { Container } from '../../styles/container'
 import { Item } from '../../components/Item'
 import { Link, useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import { SelectMonth } from '../../components/SelectMonth'
+import React, { useEffect, useState } from 'react'
 import { Header } from '../../components/header'
 import { api } from '../../server/api'
+import 'keen-slider/keen-slider.min.css'
+import { useKeenSlider } from 'keen-slider/react'
+import { SelectMonthContainer } from '../../components/SelectMonth/styles'
+
+interface ArrowProps {
+  disabled: boolean
+  left?: boolean
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onClick: (e: any) => void
+}
 
 export function Home() {
   const [name, setName] = useState<string>('')
   const [totalValue, setTotalValue] = useState<number>(0)
   const [inputValue, setInputValue] = useState<number>(0)
   const [outputValue, setOutputValue] = useState<number>(0)
+  const [currentSlide, setCurrentSlide] = React.useState(1)
+  const [loaded, setLoaded] = useState(false)
+
+  const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
+    slides: {
+      origin: 'center',
+      perView: 3,
+    },
+    slideChanged(slider) {
+      setCurrentSlide(slider.track.details.rel + 1)
+    },
+    created() {
+      setLoaded(true)
+    },
+  })
 
   const { id } = useParams()
+  if (id !== undefined) {
+    localStorage.setItem('id', id)
+  }
 
   async function fetchWallet() {
     try {
-      const response = await api.get(`/wallet/${id}`)
+      const response = await api.get(`/wallet/${id}`, {
+        params: { month: currentSlide },
+      })
       setName(response.data.name)
       setTotalValue(response.data.totalValue)
       setInputValue(response.data.inputValue)
@@ -47,6 +79,23 @@ export function Home() {
       alert(error)
     }
   }
+
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'Dezember',
+  ]
+
+  useEffect(() => {}, [currentSlide])
 
   useEffect(() => {
     fetchWallet()
@@ -61,8 +110,42 @@ export function Home() {
       />
 
       <Main>
-        <SelectMonth />
+        <div>
+          <SelectMonthContainer>
+            <div ref={sliderRef}>
+              <ul className="keen-slider">
+                {months.map((month, index) => (
+                  <li
+                    key={index}
+                    className={`keen-slider__slide number-slide${index + 1} ${
+                      index + 1 === currentSlide ? 'centered-month' : ''
+                    }`}
+                  >
+                    {month}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {loaded && instanceRef.current && (
+              <>
+                <Arrow
+                  left
+                  onClick={(e) =>
+                    e.stopPropagation() || instanceRef.current?.prev()
+                  }
+                  disabled={currentSlide === 1}
+                />
 
+                <Arrow
+                  onClick={(e) =>
+                    e.stopPropagation() || instanceRef.current?.next()
+                  }
+                  disabled={currentSlide === instanceRef.current.size}
+                />
+              </>
+            )}
+          </SelectMonthContainer>
+        </div>
         <MoneyContainer>
           <TotalValue>
             <span>Total</span>
@@ -126,5 +209,20 @@ export function Home() {
         </FinancialData>
       </Main>
     </Container>
+  )
+}
+
+function Arrow({ disabled, left, onClick }: ArrowProps) {
+  const disabeld = disabled ? ' arrow--disabled' : ''
+  return (
+    <svg
+      onClick={onClick}
+      className={`arrow ${left ? 'arrow--left' : 'arrow--right'} ${disabeld}`}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      {left && <CaretLeft />}
+      {!left && <CaretRight />}
+    </svg>
   )
 }
