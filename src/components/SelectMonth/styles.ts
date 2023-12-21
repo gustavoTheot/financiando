@@ -1,13 +1,19 @@
 import styled from 'styled-components'
 
 export const SelectMonthContainer = styled.div`
-  width: 20rem;
+  width: 50rem;
   height: 2rem;
 
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-content: center;
+  align-items: center;
+
+  margin-top: 2rem;
+
+  div:first-child {
+    width: 90%;
+  }
 
   div {
     width: 20rem;
@@ -24,19 +30,22 @@ export const SelectMonthContainer = styled.div`
   }
 
   .arrow {
-    width: 30px;
-    height: 30px;
+    width: 2rem;
+    height: 2rem;
     position: absolute;
 
     fill: #fff;
     cursor: pointer;
+    margin-top: 2rem;
   }
 
   .arrow--left {
+    top: 8px;
     left: 5px;
   }
 
   .arrow--right {
+    top: 8px;
     left: auto;
     right: 5px;
   }
@@ -50,6 +59,6 @@ export const SelectMonthContainer = styled.div`
     height: 2rem;
     font-weight: bolder;
     color: ${(props) => props.theme['gray-700']};
-    background-color: ${(props) => props.theme['gray-400']};
+    background-color: ${(props) => props.theme['purple-normal']};
   }
 `

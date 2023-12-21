@@ -1,6 +1,15 @@
 import { ReactNode } from 'react'
-import { Container, Content, HeaderContainer, IconeReturn } from './styles'
+import {
+  Container,
+  Content,
+  DescriptionPeople,
+  HeaderContainer,
+  Hello,
+  IconeReturn,
+  Options,
+} from './styles'
 import { Link } from 'react-router-dom'
+import { BellSimple, GearSix } from 'phosphor-react'
 
 interface HeaderProps {
   img?: string
@@ -21,13 +30,25 @@ export function Header({
     <HeaderContainer style={{ backgroundColor }}>
       <Container>
         {img !== undefined && (
-          <>
-            <img src={img} />
-            <Content>
-              <span>{time}</span>
-              <h2>{name}</h2>
-            </Content>
-          </>
+          <Content>
+            <Hello>
+              <img src={img} />
+
+              <DescriptionPeople>
+                <span>{time}</span>
+                <h2>{name}</h2>
+              </DescriptionPeople>
+            </Hello>
+            <Options>
+              <Link to={''}>
+                <BellSimple size={32} />
+              </Link>
+
+              <Link to={''}>
+                <GearSix size={32} />
+              </Link>
+            </Options>
+          </Content>
         )}
         {icon !== undefined && (
           <IconeReturn>

@@ -10,7 +10,7 @@ export const HeaderContainer = styled.header`
 `
 
 export const Container = styled.div`
-  width: 24rem;
+  width: 50rem;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -31,13 +31,32 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 
-  span,
-  h2 {
-    color: ${(props) => props.theme.withe};
+  width: 100%;
+`
+
+export const Hello = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+`
+
+export const DescriptionPeople = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+export const Options = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+
+  svg {
+    color: ${(props) => props.theme['gray-100']};
   }
 `
 

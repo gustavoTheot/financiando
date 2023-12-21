@@ -1,30 +1,29 @@
 import {
+  AboutWallet,
+  Box,
+  Circle,
   Description,
-  Down,
-  FinancialData,
-  ListWallet,
-  ListaItens,
+  GenerealExpenses,
+  Icon,
   Main,
-  MoneyContainer,
-  TotalValue,
-  Up,
-  WalletContainer,
+  Options,
+  Spent,
+  Value,
 } from './styles'
 import {
   ArrowDown,
   ArrowUp,
-  Money,
-  Storefront,
-  Tag,
-  Vault,
-  Wallet,
+  Cardholder,
   CaretLeft,
   CaretRight,
+  Money,
+  ShoppingCart,
+  Storefront,
+  Vault,
+  Wallet,
 } from 'phosphor-react'
 
-import { Button } from '../../components/ButtonMoney'
 import { Container } from '../../styles/container'
-import { Item } from '../../components/Item'
 import { Link, useParams } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
 import { Header } from '../../components/header'
@@ -32,6 +31,7 @@ import { api } from '../../server/api'
 import 'keen-slider/keen-slider.min.css'
 import { useKeenSlider } from 'keen-slider/react'
 import { SelectMonthContainer } from '../../components/SelectMonth/styles'
+import { Basket } from '@phosphor-icons/react'
 
 interface ArrowProps {
   disabled: boolean
@@ -51,7 +51,7 @@ export function Home() {
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
     slides: {
       origin: 'center',
-      perView: 3,
+      perView: 4,
     },
     slideChanged(slider) {
       setCurrentSlide(slider.track.details.rel + 1)
@@ -110,103 +110,159 @@ export function Home() {
       />
 
       <Main>
-        <div>
-          <SelectMonthContainer>
-            <div ref={sliderRef}>
-              <ul className="keen-slider">
-                {months.map((month, index) => (
-                  <li
-                    key={index}
-                    className={`keen-slider__slide number-slide${index + 1} ${
-                      index + 1 === currentSlide ? 'centered-month' : ''
-                    }`}
-                  >
-                    {month}
-                  </li>
-                ))}
-              </ul>
+        <SelectMonthContainer>
+          <div ref={sliderRef}>
+            <ul className="keen-slider">
+              {months.map((month, index) => (
+                <li
+                  key={index}
+                  className={`keen-slider__slide number-slide${index + 1} ${
+                    index + 1 === currentSlide ? 'centered-month' : ''
+                  }`}
+                >
+                  {month}
+                </li>
+              ))}
+            </ul>
+          </div>
+          {loaded && instanceRef.current && (
+            <>
+              <Arrow
+                left
+                onClick={(e) =>
+                  e.stopPropagation() || instanceRef.current?.prev()
+                }
+                disabled={currentSlide === 1}
+              />
+
+              <Arrow
+                onClick={(e) =>
+                  e.stopPropagation() || instanceRef.current?.next()
+                }
+                disabled={currentSlide === instanceRef.current.size}
+              />
+            </>
+          )}
+        </SelectMonthContainer>
+
+        <AboutWallet>
+          <Box>
+            <div className="total">
+              <h4>Total</h4>
+              <h2>R$ {totalValue}</h2>
+              <span>Referente a esse mês</span>
             </div>
-            {loaded && instanceRef.current && (
-              <>
-                <Arrow
-                  left
-                  onClick={(e) =>
-                    e.stopPropagation() || instanceRef.current?.prev()
-                  }
-                  disabled={currentSlide === 1}
-                />
+          </Box>
 
-                <Arrow
-                  onClick={(e) =>
-                    e.stopPropagation() || instanceRef.current?.next()
-                  }
-                  disabled={currentSlide === instanceRef.current.size}
-                />
-              </>
-            )}
-          </SelectMonthContainer>
-        </div>
-        <MoneyContainer>
-          <TotalValue>
-            <span>Total</span>
-            {totalValue < 0 ? (
-              <h1>R$ - {totalValue}</h1>
-            ) : (
-              <h1>R$ {totalValue}</h1>
-            )}
-          </TotalValue>
-          <Description>
-            <Up>
-              <ArrowUp size={32} />
-
-              <div>
-                <span>Enter</span>
-                <p>R${inputValue}</p>
+          <Box>
+            <div className="register">
+              <div className="title">
+                <h4>Entradas</h4>
+                <ArrowUp size={20} color="#2BD06D" />
               </div>
-            </Up>
+              <span>R$ {inputValue}</span>
+            </div>
+          </Box>
 
-            <Down>
-              <ArrowDown size={32} />
-
-              <div>
-                <span>Exit</span>
-                <p>R${outputValue}</p>
+          <Box>
+            <div className="register">
+              <div className="title">
+                <h4>Entradas</h4>
+                <ArrowDown size={20} color="#FF5D47" />
               </div>
-            </Down>
-          </Description>
-        </MoneyContainer>
 
-        <WalletContainer>
-          <ListWallet>
+              <span>R$ {outputValue}</span>
+            </div>
+          </Box>
+
+          <Box>
+            <div className="total">
+              <h4>Carteira</h4>
+              <h2>R$ {totalValue}</h2>
+              <span>Valor total na carteira</span>
+            </div>
+          </Box>
+        </AboutWallet>
+
+        <Options>
+          <ul>
             <li>
-              <Button icon={<Wallet size={32} />} description={'Carteira'} />
-            </li>
-            <li>
-              <Link to={`/input`}>
-                <Button icon={<Vault size={32} />} description={'Guardado'} />
+              <Link to={''}>
+                <Circle>
+                  <Wallet size={32} color="#F8F8F8" />
+                </Circle>
+                <span>Carteira</span>
               </Link>
             </li>
             <li>
-              <Link to={`/output`}>
-                <Button icon={<Tag size={32} />} description={'Compras'} />
+              <Link to={''}>
+                <Circle>
+                  <Vault size={32} color="#F8F8F8" />
+                </Circle>
+                <span>Guardado</span>
               </Link>
             </li>
             <li>
-              <Button icon={<Money size={32} />} description={'Investido'} />
+              <Link to={''}>
+                <Circle>
+                  <Money size={32} color="#F8F8F8" />
+                </Circle>
+                <span>Investido</span>
+              </Link>
             </li>
-          </ListWallet>
-        </WalletContainer>
+            <li>
+              <Link to={''}>
+                <Circle>
+                  <Basket size={32} />
+                </Circle>
+                <span>Compras</span>
+              </Link>
+            </li>
+            <li>
+              <Link to={''}>
+                <Circle>
+                  <Storefront size={32} color="#F8F8F8" />
+                </Circle>
+                <span>Mercado</span>
+              </Link>
+            </li>
+            <li>
+              <Link to={''}>
+                <Circle>
+                  <Cardholder size={32} color="#F8F8F8" />
+                </Circle>
+                <span>Cartões</span>
+              </Link>
+            </li>
+          </ul>
+        </Options>
 
-        <FinancialData>
-          <ListaItens>
-            <Item
-              icon={<Storefront size={32} />}
-              formPayament={'Cartão de crédito'}
-              local={'Mercado'}
-              value={12.2}
-            />
-          </ListaItens>
-        </FinancialData>
+        <Spent>
+          <GenerealExpenses>
+            <h3>Gastos fixos</h3>
+
+            <ul>
+              <li>
+                <Icon>
+                  <ShoppingCart size={24} />{' '}
+                </Icon>
+                <Description>
+                  <h6>Mercado</h6>
+                  <span>Cartão de crédito</span>
+                </Description>
+                <Value>R$ 20,00</Value>
+              </li>
+            </ul>
+          </GenerealExpenses>
+
+          <GenerealExpenses>
+            <h3>Gastos alternativos</h3>
+
+            <ul>
+              <li></li>
+            </ul>
+          </GenerealExpenses>
+        </Spent>
       </Main>
     </Container>
   )

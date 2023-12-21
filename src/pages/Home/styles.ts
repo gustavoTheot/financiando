@@ -11,123 +11,121 @@ export const Main = styled.main`
   bottom: 4.2rem;
 `
 
-export const MoneyContainer = styled.div`
-  width: 100%;
-  height: 12rem;
-  background-color: ${(props) => props.theme.withe};
+export const AboutWallet = styled.div`
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 2fr;
+  gap: 1rem;
 
-  padding: 1rem 2rem 1rem 2rem;
+  margin-top: 1rem;
+`
+
+export const Box = styled.div`
+  padding: 2rem;
   border-radius: 8px;
+  background-color: ${(props) => props.theme['grey-800']};
 
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: flex-start;
-
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-`
-
-export const TotalValue = styled.div`
-  h1 {
-    margin-top: 0.125rem;
-  }
-`
-
-export const Description = styled.div`
-  width: 100%;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   align-items: center;
 
-  span {
-    font-size: 0.75rem;
-  }
-
-  p {
-    font-size: 1.15rem;
-    font-weight: bold;
-  }
-`
-
-export const Up = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 0.75rem;
-
-  svg {
-    color: ${(props) => props.theme.input};
-  }
-
-  div {
+  .register,
+  .total {
     display: flex;
     flex-direction: column;
+    gap: 0.525rem;
   }
 
-  p {
-    color: ${(props) => props.theme.input};
-  }
-`
-
-export const Down = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 0.75rem;
-
-  svg {
-    color: ${(props) => props.theme.output};
-  }
-
-  div {
+  .title {
     display: flex;
-    flex-direction: column;
-  }
-
-  p {
-    color: ${(props) => props.theme.output};
+    flex-direction: row;
+    gap: 0.875rem;
   }
 `
 
-export const WalletContainer = styled.div`
+export const Options = styled.div`
   width: 100%;
-  height: 10rem;
-  background-color: ${(props) => props.theme.withe};
+  padding: 1.5rem;
 
-  padding: 1rem 2rem 1rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   border-radius: 8px;
+  background-color: ${(props) => props.theme['grey-800']};
 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: flex-start;
+  ul {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
 
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-`
+    li {
+      list-style: none;
+    }
 
-export const ListWallet = styled.ul`
-  display: flex;
-  flex-direction: row;
-  gap: 1.5rem;
+    li a {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0.685rem;
 
-  li {
-    list-style: none;
-
-    a {
       text-decoration: none;
+      color: ${(props) => props.theme['gray-100']};
     }
   }
 `
 
-export const FinancialData = styled.div`
-  width: 24rem;
-  height: 20rem;
-  background-color: ${(props) => props.theme.withe};
+export const Circle = styled.div`
+  width: 3.5rem;
+  height: 3.5rem;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 999px;
+  background-color: ${(props) => props.theme['purple-normal']};
+`
+
+export const Spent = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  width: 100%;
+`
+
+export const GenerealExpenses = styled.div`
+  h3 {
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    padding: 1.5rem;
+    border-radius: 8px;
+    background-color: ${(props) => props.theme['grey-800']};
+    width: 100%;
+    height: 30vh;
+
+    li {
+      list-style: none;
+
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+`
+
+export const Icon = styled.div`
+  padding: 1rem;
   border-radius: 8px;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  background-color: ${(props) => props.theme['green-dark-musg']};
+
+  svg {
+    color: ${(props) => props.theme['green-musg']};
+  }
 `
 
-export const ListaItens = styled.ul`
-  padding: 1rem 2rem 1rem 2rem;
-`
+export const Description = styled.div``
+
+export const Value = styled.div``

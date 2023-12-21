@@ -1,12 +1,16 @@
 export const defaultTheme = {
   withe: '#FFF',
 
-  'green-default': '#2BD06D',
-  'text-default': '#000000',
-  'gray-700': '#646464',
-  'gray-500': '#C0C0C0	',
-  'gray-400': '#E6E6E6',
-  'gray-100': '#F1F1F1',
-  output: '#FF5D47',
-  input: '#2BD06D',
+  'grey-900': '#0C0C0D',
+  'grey-800': '#17171A',
+  'gray-400': '#AFABB6',
+  'gray-300': '#D9D9D9',
+  'gray-100': '#F8F8F8',
+
+  'purple-normal': '#8257E5',
+  'red-tomato': '#FF5D47',
+  'green-light': '#2BD06D',
+  'green-musg': '#8CAD51',
+
+  'green-dark-musg': '#1C2015',
 }
